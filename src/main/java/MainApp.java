@@ -25,7 +25,7 @@ public class MainApp {
             Long timeStop = System.currentTimeMillis();
             System.out.println("Время выполнения - " + (timeStop - timeStart) / 1000d + " сек., обработано - "
                     + (MainPage.getProducts().size()) + " товаров");
-            System.exit(0);
+            exitMainApp();
 
         }
 
@@ -68,6 +68,20 @@ public class MainApp {
         }
         csvFile.createCSVFile(MainPage.getProducts());
         System.out.println("Файл с данными сохранен с именем - " + CsvFile.getCsvFileName());
-        System.exit(0);
+        exitMainApp();
+
+    }
+
+    public static void exitMainApp() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Введите q для выхода: ");
+        try {
+            String userResponse = br.readLine();
+            if (userResponse.equalsIgnoreCase("q")) {
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
